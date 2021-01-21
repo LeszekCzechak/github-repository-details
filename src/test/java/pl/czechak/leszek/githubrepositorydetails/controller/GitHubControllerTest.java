@@ -36,14 +36,7 @@ class GitHubControllerTest {
         String username = "username";
         String url = "/repositories/" + username + "/" + repoName;
 
-
-        Details details = new Details(repoName,
-                "repoDesc",
-                "repoUrl",
-                16,
-                LocalDateTime.MAX);
-
-        when(gitHubService.getDetails(username, repoName)).thenReturn(Mono.just(details));
+        when(gitHubService.getDetails(username, repoName)).thenReturn(Mono.empty());
 
         //when//then
 
