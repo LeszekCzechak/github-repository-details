@@ -1,11 +1,13 @@
 package pl.czechak.leszek.githubrepositorydetails.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Data
+@AllArgsConstructor
 public class Details {
 
     @JsonProperty("full_name")
