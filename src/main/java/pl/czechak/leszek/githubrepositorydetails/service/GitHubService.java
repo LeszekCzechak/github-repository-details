@@ -10,9 +10,8 @@ import reactor.core.publisher.Mono;
 @Service
 public class GitHubService {
 
-//    @Value("${github.user.token}")
-//    wartość wpisana  ręcznie na czas testów
-    private String userToken = "965f496c7ac6bbf37c67f4e9d0f3f5194528d837";
+    @Value("${github.user.token}")
+    private String userToken;
 
     private final WebClient webClient;
 

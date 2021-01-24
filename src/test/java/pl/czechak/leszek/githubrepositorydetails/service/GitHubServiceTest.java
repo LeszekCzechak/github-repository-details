@@ -1,6 +1,5 @@
 package pl.czechak.leszek.githubrepositorydetails.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.jupiter.api.AfterAll;
@@ -25,7 +24,6 @@ class GitHubServiceTest {
 
     public static MockWebServer mockWebServer;
     private GitHubService gitHubService;
-    private ObjectMapper objectMapper;
 
     @BeforeAll
     static void setUp() throws IOException {
@@ -50,7 +48,6 @@ class GitHubServiceTest {
 
         gitHubService = new GitHubService(webClient);
 
-        objectMapper = new ObjectMapper();
     }
 
     @Test
@@ -63,11 +60,14 @@ class GitHubServiceTest {
                 "descTest",
                 "urlTest",
                 16,
-                LocalDateTime.now());
+                LocalDateTime.parse("2020-09-24T10:35:17"));
 
-        Mono<Details> detailsMono = Mono.just(details);
-
-        String body = objectMapper.writeValueAsString(details);
+        String body = "{\"description\":\"descTest\",\n" +
+                "\"stars\":16,\n" +
+                "\"full_name\":\"repoName\",\n" +
+                "\"clone_url\":\"urlTest\",\n" +
+                "\"created_at\":\"2020-09-24T10:35:17\"" +
+                "}";
 
         MockResponse mockResponse = new MockResponse()
                 .clearHeaders()
@@ -81,6 +81,8 @@ class GitHubServiceTest {
 
         //then
         Details response = responseMono.block();
-        assertThat(responseMono).isEqualTo(detailsMono);
+        assertThat(response.getCloneUrl()).isEqualTo(details.getCloneUrl());
+        assertThat(response.getDescription()).isEqualTo(details.getDescription());
+        assertThat(response.getStars()).isEqualTo(details.getStars());
     }
 }
