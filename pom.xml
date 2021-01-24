@@ -74,6 +74,14 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.11.1</version>
 		</dependency>
+<!--		&lt;!&ndash; https://mvnrepository.com/artifact/org.junit-pioneer/junit-pioneer &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>org.junit-pioneer</groupId>-->
+<!--			<artifactId>junit-pioneer</artifactId>-->
+<!--			<version>1.2.0</version>-->
+<!--			<scope>test</scope>-->
+<!--		</dependency>-->
+
 	</dependencies>
 
 	<build>
