@@ -12,7 +12,7 @@ public class GitHubApiConfig {
     private String baseUrl;
 
     @Bean
-    public WebClient webClient(){
+    public WebClient githubWebClient(){
         return  WebClient.builder()
                 .baseUrl(baseUrl)
                 .build();

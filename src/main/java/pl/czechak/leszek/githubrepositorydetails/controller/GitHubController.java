@@ -1,5 +1,6 @@
 package pl.czechak.leszek.githubrepositorydetails.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,16 +10,12 @@ import pl.czechak.leszek.githubrepositorydetails.model.Details;
 import pl.czechak.leszek.githubrepositorydetails.service.GitHubService;
 import reactor.core.publisher.Mono;
 
-
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/repositories")
 public class GitHubController {
 
     private final GitHubService gitHubService;
-
-    public GitHubController(GitHubService gitHubService) {
-        this.gitHubService = gitHubService;
-    }
 
     @GetMapping("/{owner}/{repository-name}")
     public ResponseEntity<Mono<Details>> getDetails(@PathVariable(name = "owner") String owner,
